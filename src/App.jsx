@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import SignIn from "./components/SignIn";
 import GoogleImage from "./assets/providers/google.png";
+import  { useState } from "react";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB1FCnPBNif3OFLebGag7lRLgW-LYuFpS8",
@@ -17,6 +18,17 @@ const auth = getAuth(app);
 console.log(auth)
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  function authCreateAccountWithEmail(email, password) {
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          setIsLoggedIn(true)
+        })
+        .catch((error) => {
+            console.error(error.message)
+        })
+}  
   const isLoggedOutView = (
     <section className="logged-out-view">
       <div className="container">
@@ -29,7 +41,7 @@ function App() {
           </button>
         </div>
 
-        <SignIn/>
+        <SignIn createUser={authCreateAccountWithEmail}/>
       </div>
     </section>
   );
@@ -40,9 +52,11 @@ function App() {
     </section>
   );
 
+  
+
   return (
-    <>      
-      {isLoggedOutView}
+    <>          
+      {isLoggedIn? isLoggedInView : isLoggedOutView}
     </>
   )
 }
