@@ -1,4 +1,20 @@
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import SignIn from "./components/SignIn";
 import GoogleImage from "./assets/providers/google.png";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB1FCnPBNif3OFLebGag7lRLgW-LYuFpS8",
+  authDomain: "moody-b6766.firebaseapp.com",
+  projectId: "moody-b6766",
+  storageBucket: "moody-b6766.appspot.com",
+  messagingSenderId: "706708835527",
+  appId: "1:706708835527:web:f9bd98da405ec95bf982e2"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+console.log(auth)
 
 function App() {
   const isLoggedOutView = (
@@ -13,14 +29,14 @@ function App() {
           </button>
         </div>
 
-        <div className="auth-fields-and-buttons">
-          <input id="email-input" type="email" placeholder="Email"></input>
-          <input id="password-input" type="password" placeholder="Password"></input>
-
-          <button id="sign-in-btn" className="primary-btn">Sign in</button>
-          <button id="create-account-btn" className="secondary-btn">Create Account</button>
-        </div>
+        <SignIn/>
       </div>
+    </section>
+  );
+
+  const isLoggedInView = (
+    <section>
+      Random Stuff
     </section>
   );
 

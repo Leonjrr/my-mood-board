@@ -115,3 +115,23 @@ button:hover {
 .google-btn-logo {
   width: 1.375em;
 }
+.primary-btn {
+  background-color: var(--primary-color);
+  box-shadow: 0px var(--button-height) 0px 0px var(--dark-color);
+  position: relative;
+}
+
+.primary-btn:hover {
+  top: var(--button-height);
+  box-shadow: none;
+}
+
+.secondary-btn {
+  padding: 0.4em;
+  background-color: transparent;
+}
+
+.secondary-btn:hover {
+  color: var(--light-color);
+  background-color: var(--dark-color);
+}
